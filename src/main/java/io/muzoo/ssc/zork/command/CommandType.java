@@ -4,6 +4,7 @@ import io.muzoo.ssc.zork.command.impl.*;
 
 public enum CommandType {
 
+    DROP(DropCommand.class, "drop"),
     USE(UseCommand.class, "use"),
     TAKE(TakeCommand.class, "take"),
     GO(GoCommand.class, "go"),
