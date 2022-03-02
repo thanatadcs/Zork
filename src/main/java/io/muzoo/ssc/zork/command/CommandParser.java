@@ -12,6 +12,6 @@ public class CommandParser {
                 return new CommandLine(commandType, argument);
             }
         }
-        return null;
+        return new CommandLine(null, null);
     }
 }
