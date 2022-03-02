@@ -3,9 +3,11 @@ package io.muzoo.ssc.zork.command;
 import io.muzoo.ssc.zork.command.impl.ExitCommand;
 import io.muzoo.ssc.zork.command.impl.GoCommand;
 import io.muzoo.ssc.zork.command.impl.InfoCommand;
+import io.muzoo.ssc.zork.command.impl.TakeCommand;
 
 public enum CommandType {
 
+    TAKE(TakeCommand.class, "take"),
     GO(GoCommand.class, "go"),
     INFO(InfoCommand.class, "info"),
     EXIT(ExitCommand.class, "exit");

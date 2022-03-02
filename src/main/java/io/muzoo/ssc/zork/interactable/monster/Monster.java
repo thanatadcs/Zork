@@ -1,22 +1,21 @@
 package io.muzoo.ssc.zork.interactable.monster;
 
 import io.muzoo.ssc.zork.interactable.Interactable;
-import io.muzoo.ssc.zork.interactable.weapon.Weapon;
 
 public class Monster extends Interactable {
 
     private String attack;
 
-    private int maxHP;
+    private int maxHp;
 
-    private int HP;
+    private int hp;
 
-    private int attackPower;
+    private int atk;
 
-    public Monster(String name, String description, String attack, int maxHP, int attackPower) {
-        super(name, description);
+    public Monster(String name, String description, String attack, int maxHP, int atk) {
+        super(name, description, false);
         this.attack = attack;
-        this.maxHP = maxHP;
-        this.attackPower = attackPower;
+        this.maxHp = maxHP;
+        this.atk = atk;
     }
 }

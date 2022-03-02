@@ -1,8 +1,8 @@
 package io.muzoo.ssc.zork.interactable.monster;
 
-import io.muzoo.ssc.zork.interactable.InteractableType;
+import io.muzoo.ssc.zork.interactable.InteractableTypeInterface;
 
-public enum MonsterType implements InteractableType {
+public enum MonsterType implements InteractableTypeInterface {
     LIZARDMAN("lizard man", "Normal lizard male", "attacked with a spear!", 2, 1);
 
     private String name;
@@ -11,15 +11,15 @@ public enum MonsterType implements InteractableType {
 
     private String attack;
 
-    private int maxHP;
+    private int maxHp;
 
-    private int attackPower;
+    private int atk;
 
     MonsterType(String name, String description, String weapon, int maxHP, int attackPower) {
         this.name = name;
         this.attack = weapon;
-        this.maxHP = maxHP;
-        this.attackPower = attackPower;
+        this.maxHp = maxHP;
+        this.atk = attackPower;
     }
 
     public String getName() {
@@ -35,11 +35,11 @@ public enum MonsterType implements InteractableType {
     }
 
     public int getMaxHP() {
-        return maxHP;
+        return maxHp;
     }
 
-    public int getAttackPower() {
-        return attackPower;
+    public int getAtk() {
+        return atk;
     }
 
     public Boolean match(String name) {

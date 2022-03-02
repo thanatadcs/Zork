@@ -7,18 +7,18 @@ import io.muzoo.ssc.zork.interactable.monster.MonsterType;
 import io.muzoo.ssc.zork.interactable.weapon.WeaponFactory;
 import io.muzoo.ssc.zork.interactable.weapon.WeaponType;
 
-public enum MainType {
+public enum InteractableTypeEnum {
     WEAPON(WeaponType.values(), "weapon", new WeaponFactory()),
     MONSTER(MonsterType.values(), "monster", new MonsterFactory()),
     ITEM(ItemType.values(), "item", new ItemFactory());
 
-    private InteractableType[] itTypeArray;
+    private InteractableTypeInterface[] itTypeArray;
 
     private InteractableFactory factory;
 
     private String type;
 
-    MainType(InteractableType[] itTypeArray, String type, InteractableFactory factory) {
+    InteractableTypeEnum(InteractableTypeInterface[] itTypeArray, String type, InteractableFactory factory) {
         this.itTypeArray = itTypeArray;
         this.type = type;
         this.factory = factory;
@@ -28,7 +28,7 @@ public enum MainType {
         return type;
     }
 
-    public InteractableType[] getItTypeArray() {
+    public InteractableTypeInterface[] getItTypeArray() {
         return itTypeArray;
     }
 

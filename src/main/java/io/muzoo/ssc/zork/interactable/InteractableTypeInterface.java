@@ -1,5 +1,5 @@
 package io.muzoo.ssc.zork.interactable;
 
-public interface InteractableType {
+public interface InteractableTypeInterface {
     Boolean match(String name);
 }

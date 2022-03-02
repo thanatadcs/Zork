@@ -1,8 +1,8 @@
 package io.muzoo.ssc.zork.interactable.weapon;
 
-import io.muzoo.ssc.zork.interactable.InteractableType;
+import io.muzoo.ssc.zork.interactable.InteractableTypeInterface;
 
-public enum WeaponType implements InteractableType {
+public enum WeaponType implements InteractableTypeInterface {
     SPOON("spoon", "You eat soup with this.", 1);
 
     private String name;

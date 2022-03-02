@@ -14,7 +14,9 @@ public class Game {
 
     private Room currentRoom = LoadRoom.load("map.txt");
 
-    // Call this to start game
+    private Player player = new Player(5, 2, null);
+
+    // Call this to start gameg
     public void start() {
         // Safety check
         if (currentRoom == null)
@@ -34,6 +36,11 @@ public class Game {
                 command.execute(this, commandLine.getArgument());
             }
         }
+    }
+
+    // Player support
+    public Player getPlayer() {
+        return player;
     }
 
     // Command support

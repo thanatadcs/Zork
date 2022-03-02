@@ -1,8 +1,8 @@
 package io.muzoo.ssc.zork.interactable.item;
 
-import io.muzoo.ssc.zork.interactable.InteractableType;
+import io.muzoo.ssc.zork.interactable.InteractableTypeInterface;
 
-public enum ItemType implements InteractableType {
+public enum ItemType implements InteractableTypeInterface {
     POTION("potion", "Taste like medicine");
 
     private String name;
