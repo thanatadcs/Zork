@@ -1,0 +1,6 @@
+name:myRoom
+description:I'm in my room.
+north:outside
+name:outside
+description:I'm outside.
+south:myRoom

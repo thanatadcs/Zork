@@ -1,14 +1,16 @@
 package io.muzoo.ssc.zork.room;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Room {
+public class Room {
     private String description;
 
     private Map<String, Room> exits;
 
     public Room(String description) {
         this.description = description;
+        exits = new HashMap<>();
     }
 
     public String getDescription() {
@@ -26,4 +28,5 @@ public abstract class Room {
     public void setExits(String direction, Room room) {
         this.exits.put(direction, room);
     }
+
 }

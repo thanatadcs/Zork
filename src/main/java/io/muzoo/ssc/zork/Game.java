@@ -1,8 +1,8 @@
 package io.muzoo.ssc.zork;
 
 import io.muzoo.ssc.zork.command.*;
+import io.muzoo.ssc.zork.room.LoadRoom;
 import io.muzoo.ssc.zork.room.Room;
-import io.muzoo.ssc.zork.room.impl.MyRoom;
 
 import java.util.Scanner;
 
@@ -12,11 +12,15 @@ public class Game {
 
     private boolean exit = false;
 
-    private Room currentRoom = new MyRoom("I'm in my room.");
+    private Room currentRoom = LoadRoom.load("rooms.txt");
 
     // Call this to start game
     public void start() {
-        System.out.println("Game started");
+        // Safety check
+        if (currentRoom == null)
+            exit();
+        else
+            System.out.println("Game started");
 
         // Main game loop
         // Parse and execute command
@@ -32,8 +36,8 @@ public class Game {
         }
     }
 
-    // Getter Setter
-    // Exit functionality
+    // Command support
+    // Exit command
     public boolean isExit() {
         return exit;
     }
@@ -43,12 +47,13 @@ public class Game {
         scanner.close();
     }
 
-    // Room functionality
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
+    // Go command
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    // Info command
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 }
