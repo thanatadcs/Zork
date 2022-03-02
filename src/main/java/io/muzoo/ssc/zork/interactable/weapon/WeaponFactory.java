@@ -1,7 +1,10 @@
-package io.muzoo.ssc.zork.weapon;
+package io.muzoo.ssc.zork.interactable.weapon;
 
-public class WeaponFactory {
-    public static Weapon get(String weaponName) {
+import io.muzoo.ssc.zork.interactable.Interactable;
+import io.muzoo.ssc.zork.interactable.InteractableFactory;
+
+public class WeaponFactory implements InteractableFactory {
+    public Interactable get(String weaponName) {
         for (WeaponType weaponType: WeaponType.values()) {
             if (weaponType.getName().equals(weaponName)) {
                 return new Weapon(weaponType.getName(), weaponType.getDescription(), weaponType.getDamage());

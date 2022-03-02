@@ -1,24 +1,27 @@
 package io.muzoo.ssc.zork.room;
 
-import io.muzoo.ssc.zork.monster.Monster;
-import io.muzoo.ssc.zork.monster.MonsterFactory;
-import io.muzoo.ssc.zork.monster.MonsterType;
-import io.muzoo.ssc.zork.weapon.Weapon;
-import io.muzoo.ssc.zork.weapon.WeaponFactory;
-import io.muzoo.ssc.zork.weapon.WeaponType;
+import io.muzoo.ssc.zork.interactable.Interactable;
+import io.muzoo.ssc.zork.interactable.InteractableFactory;
+import io.muzoo.ssc.zork.interactable.InteractableFactoryProducer;
+import io.muzoo.ssc.zork.interactable.InteractableType;
+import io.muzoo.ssc.zork.interactable.monster.Monster;
+import io.muzoo.ssc.zork.interactable.monster.MonsterFactory;
+import io.muzoo.ssc.zork.interactable.monster.MonsterType;
+import io.muzoo.ssc.zork.interactable.weapon.Weapon;
+import io.muzoo.ssc.zork.interactable.weapon.WeaponFactory;
+import io.muzoo.ssc.zork.interactable.weapon.WeaponType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class LoadRoom {
 
     public static Room load(String filepath) {
         Map<String, Room> roomMap = new HashMap<>();
         List<String> dirs = List.of("north", "south", "east", "west");
+        List<String> interactables = List.of("monsters", "weapons", "items");
+        List<InteractableType[]> itTypeList = List.of(WeaponType.values(), MonsterType.values());
 
         // Generate rough map (String map)
         try {
@@ -41,31 +44,32 @@ public class LoadRoom {
                     roomMap.get(roomName).setDescription(room[1]);
                 }
 
-                // Add monster
-                if (room[0].equals("monsters")) {
-                    String[] monstersList = room[1].split(",");
+                if (interactables.contains(room[0])) {
+                    String[] interactableList = room[1].split(",");
 
-                    for (String monsterSt: monstersList) {
-                        Monster monster = MonsterFactory.get(monsterSt);
-                        if (monster != null)
-                            roomMap.get(roomName).addMonster(monster);
+                    for (String interactableSt: interactableList) {
+
+                        // Determine which factory to use
+                        InteractableFactory itFactory = null;
+                        for (InteractableType[] itTypeArray: itTypeList) {
+                            for (InteractableType itType: itTypeArray) {
+                                if (itType.match(interactableSt)) {
+                                    itFactory = InteractableFactoryProducer.getFactory(itType.getType());
+                                    break;
+                                }
+                            }
+                            if (itFactory != null) break;
+                        }
+
+
+                        Interactable interact = itFactory.get(interactableSt);
+                        if (interact != null)
+                            roomMap.get(roomName).addInteractable(interact);
                         else
-                            System.out.println("Can't add monster " + monsterSt);
+                            System.out.println("Can't add " + interactableSt);
                     }
                 }
 
-                // Add weapon
-                if (room[0].equals("weapons")) {
-                    String[] weaponList = room[1].split(",");
-
-                    for (String weaponSt: weaponList) {
-                        Weapon weapon = WeaponFactory.get(weaponSt);
-                        if (weapon != null)
-                            roomMap.get(roomName).addWeapon(weapon);
-                        else
-                            System.out.println("Can't add weapon " + weaponSt);
-                    }
-                }
 
                 // Add exits to exiting room and create adjacent room if necessary.
                 if (dirs.contains(room[0])) {

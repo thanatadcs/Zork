@@ -1,17 +1,14 @@
-package io.muzoo.ssc.zork.weapon;
+package io.muzoo.ssc.zork.interactable;
 
-public class Weapon {
+public abstract class Interactable {
 
     private String name;
 
     private String description;
 
-    private int damage;
-
-    public Weapon(String name, String description, int damage) {
+    public Interactable(String name, String description) {
         this.name = name;
         this.description = description;
-        this.damage = damage;
     }
 
     @Override

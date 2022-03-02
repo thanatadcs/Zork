@@ -1,4 +1,4 @@
-package io.muzoo.ssc.zork.item;
+package io.muzoo.ssc.zork.interactable.item;
 
 public class Item {
 
