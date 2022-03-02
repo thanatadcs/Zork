@@ -13,7 +13,7 @@ public class Monster extends Interactable {
     private int atk;
 
     public Monster(String name, String description, String attack, int maxHP, int atk) {
-        super(name, description, false);
+        super(name, description, "monster",false);
         this.attack = attack;
         this.maxHp = maxHP;
         this.atk = atk;

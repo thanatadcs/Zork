@@ -8,10 +8,13 @@ public abstract class Interactable {
 
     private boolean pickable;
 
-    public Interactable(String name, String description, boolean pickable) {
+    private String type;
+
+    public Interactable(String name, String description, String type, boolean pickable) {
         this.name = name;
         this.description = description;
         this.pickable = pickable;
+        this.type = type;
     }
 
     public boolean match(String name) {
@@ -25,5 +28,9 @@ public abstract class Interactable {
 
     public boolean isPickable() {
         return pickable;
+    }
+
+    public String getType() {
+        return type;
     }
 }

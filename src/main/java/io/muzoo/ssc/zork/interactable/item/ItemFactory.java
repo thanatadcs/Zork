@@ -7,7 +7,7 @@ public class ItemFactory implements InteractableFactory {
     public Interactable get(String itemName) {
         for (ItemType itemType: ItemType.values()) {
             if (itemType.match(itemName)) {
-                return new Item(itemType.getName(), itemType.getDescription());
+                return new Item(itemType.getName(), itemType.getDescription(), itemType.getEffect(), itemType.isConsumable());
             }
         }
         return null;

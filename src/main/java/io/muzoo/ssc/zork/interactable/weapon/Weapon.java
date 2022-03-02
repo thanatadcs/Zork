@@ -7,7 +7,7 @@ public class Weapon extends Interactable {
     private int damage;
 
     public Weapon(String name, String description, int damage) {
-        super(name, description, true);
+        super(name, description, "weapon",true);
         this.damage = damage;
     }
 }

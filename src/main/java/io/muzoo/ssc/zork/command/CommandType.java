@@ -1,12 +1,10 @@
 package io.muzoo.ssc.zork.command;
 
-import io.muzoo.ssc.zork.command.impl.ExitCommand;
-import io.muzoo.ssc.zork.command.impl.GoCommand;
-import io.muzoo.ssc.zork.command.impl.InfoCommand;
-import io.muzoo.ssc.zork.command.impl.TakeCommand;
+import io.muzoo.ssc.zork.command.impl.*;
 
 public enum CommandType {
 
+    USE(UseCommand.class, "use"),
     TAKE(TakeCommand.class, "take"),
     GO(GoCommand.class, "go"),
     INFO(InfoCommand.class, "info"),
