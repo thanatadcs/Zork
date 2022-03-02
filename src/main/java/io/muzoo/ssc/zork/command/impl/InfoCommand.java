@@ -2,6 +2,8 @@ package io.muzoo.ssc.zork.command.impl;
 
 import io.muzoo.ssc.zork.Game;
 import io.muzoo.ssc.zork.command.Command;
+import io.muzoo.ssc.zork.monster.Monster;
+import io.muzoo.ssc.zork.room.Room;
 
 public class InfoCommand implements Command {
     @Override
@@ -9,7 +11,11 @@ public class InfoCommand implements Command {
         if (argument != null) {
             System.out.println("Info what?");
         } else {
-            System.out.println(game.getCurrentRoom().getDescription());
+            Room room = game.getCurrentRoom();
+            System.out.println(room.getDescription());
+            for (Monster monster: room.getMonsterList()) {
+                System.out.println(monster);
+            }
         }
     }
 }

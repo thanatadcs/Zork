@@ -1,5 +1,6 @@
 name:myRoom
 description:I'm in my room.
+monsters:lizard man,lizard man
 north:outside
 name:outside
 description:I'm outside.

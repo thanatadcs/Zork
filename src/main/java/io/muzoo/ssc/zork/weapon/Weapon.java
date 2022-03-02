@@ -1,4 +1,4 @@
-package io.muzoo.ssc.zork;
+package io.muzoo.ssc.zork.weapon;
 
 public class Weapon {
 

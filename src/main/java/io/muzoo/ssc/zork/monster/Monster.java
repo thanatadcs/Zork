@@ -1,4 +1,6 @@
-package io.muzoo.ssc.zork;
+package io.muzoo.ssc.zork.monster;
+
+import io.muzoo.ssc.zork.weapon.Weapon;
 
 public class Monster {
 
@@ -12,11 +14,15 @@ public class Monster {
 
     private int attackPower;
 
-    public Monster(String name, Weapon weapon, int maxHP, int HP, int attackPower) {
+    public Monster(String name, Weapon weapon, int maxHP, int attackPower) {
         this.name = name;
         this.weapon = weapon;
         this.maxHP = maxHP;
-        this.HP = HP;
         this.attackPower = attackPower;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

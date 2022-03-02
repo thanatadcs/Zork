@@ -1,5 +1,9 @@
 package io.muzoo.ssc.zork.room;
 
+import io.muzoo.ssc.zork.monster.Monster;
+import io.muzoo.ssc.zork.monster.MonsterFactory;
+import io.muzoo.ssc.zork.monster.MonsterType;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -32,6 +36,16 @@ public class LoadRoom {
                 // Add description to existing room
                 if (room[0].equals("description")) {
                     roomMap.get(roomName).setDescription(room[1]);
+                }
+
+                // Add monster
+                if (room[0].equals("monsters")) {
+                    String[] monstersList = room[1].split(",");
+
+                    for (String monsterSt: monstersList) {
+                        Monster monster = MonsterFactory.get(monsterSt);
+                        if (monster != null) roomMap.get(roomName).addMonster(monster);
+                    }
                 }
 
                 // Add exits to exiting room and create adjacent room if necessary.
