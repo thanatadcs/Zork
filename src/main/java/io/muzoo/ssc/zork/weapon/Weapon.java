@@ -13,4 +13,9 @@ public class Weapon {
         this.description = description;
         this.damage = damage;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

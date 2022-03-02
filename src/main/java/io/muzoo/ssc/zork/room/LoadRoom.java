@@ -3,6 +3,9 @@ package io.muzoo.ssc.zork.room;
 import io.muzoo.ssc.zork.monster.Monster;
 import io.muzoo.ssc.zork.monster.MonsterFactory;
 import io.muzoo.ssc.zork.monster.MonsterType;
+import io.muzoo.ssc.zork.weapon.Weapon;
+import io.muzoo.ssc.zork.weapon.WeaponFactory;
+import io.muzoo.ssc.zork.weapon.WeaponType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,7 +47,23 @@ public class LoadRoom {
 
                     for (String monsterSt: monstersList) {
                         Monster monster = MonsterFactory.get(monsterSt);
-                        if (monster != null) roomMap.get(roomName).addMonster(monster);
+                        if (monster != null)
+                            roomMap.get(roomName).addMonster(monster);
+                        else
+                            System.out.println("Can't add monster " + monsterSt);
+                    }
+                }
+
+                // Add weapon
+                if (room[0].equals("weapons")) {
+                    String[] weaponList = room[1].split(",");
+
+                    for (String weaponSt: weaponList) {
+                        Weapon weapon = WeaponFactory.get(weaponSt);
+                        if (weapon != null)
+                            roomMap.get(roomName).addWeapon(weapon);
+                        else
+                            System.out.println("Can't add weapon " + weaponSt);
                     }
                 }
 

@@ -12,7 +12,7 @@ public class Game {
 
     private boolean exit = false;
 
-    private Room currentRoom = LoadRoom.load("rooms.txt");
+    private Room currentRoom = LoadRoom.load("map.txt");
 
     // Call this to start game
     public void start() {
