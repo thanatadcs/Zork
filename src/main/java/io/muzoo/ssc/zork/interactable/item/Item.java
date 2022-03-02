@@ -1,9 +1,9 @@
 package io.muzoo.ssc.zork.interactable.item;
 
-public class Item {
+import io.muzoo.ssc.zork.interactable.Interactable;
 
-    private String name;
-
-    private String description;
-
+public class Item extends Interactable {
+    public Item(String name, String description) {
+        super(name, description);
+    }
 }

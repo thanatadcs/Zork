@@ -15,8 +15,6 @@ public enum MonsterType implements InteractableType {
 
     private int attackPower;
 
-    private String type = "monster";
-
     MonsterType(String name, String description, String weapon, int maxHP, int attackPower) {
         this.name = name;
         this.attack = weapon;
@@ -42,10 +40,6 @@ public enum MonsterType implements InteractableType {
 
     public int getAttackPower() {
         return attackPower;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public Boolean match(String name) {

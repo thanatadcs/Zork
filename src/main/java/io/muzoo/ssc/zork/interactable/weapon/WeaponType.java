@@ -11,8 +11,6 @@ public enum WeaponType implements InteractableType {
 
     private int damage;
 
-    private String type = "weapon";
-
     WeaponType(String name, String description, int damage) {
         this.name = name;
         this.description = description;
@@ -33,9 +31,5 @@ public enum WeaponType implements InteractableType {
 
     public int getDamage() {
         return damage;
-    }
-
-    public String getType() {
-        return type;
     }
 }

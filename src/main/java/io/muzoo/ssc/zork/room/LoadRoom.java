@@ -4,7 +4,7 @@ import io.muzoo.ssc.zork.interactable.Interactable;
 import io.muzoo.ssc.zork.interactable.InteractableFactory;
 import io.muzoo.ssc.zork.interactable.InteractableFactoryProducer;
 import io.muzoo.ssc.zork.interactable.InteractableType;
-import io.muzoo.ssc.zork.interactable.InteractableTypeEnum;
+import io.muzoo.ssc.zork.interactable.MainType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +15,7 @@ public class LoadRoom {
     public static Room load(String filepath) {
         Map<String, Room> roomMap = new HashMap<>();
         List<String> dirs = List.of("north", "south", "east", "west");
-        InteractableTypeEnum[] itTypeEnums = InteractableTypeEnum.values();
+        MainType[] allType = MainType.values();
         // Generate rough map (String map)
         try {
             Scanner scanner = new Scanner(new File(filepath));
@@ -37,9 +37,9 @@ public class LoadRoom {
                     roomMap.get(roomName).setDescription(line[1]);
                 }
 
-                for (InteractableTypeEnum itTypeEnum: itTypeEnums) {
-                    if (itTypeEnum.getType().equals(line[0])) {
-                        addInteractable(roomMap, itTypeEnums, roomName, line);
+                for (MainType type: allType) {
+                    if (type.getType().equals(line[0])) {
+                        addInteractable(roomMap, type, roomName, line);
                     }
                 }
 
@@ -62,22 +62,20 @@ public class LoadRoom {
         return null;
     }
 
-    private static void addInteractable(Map<String, Room> roomMap, InteractableTypeEnum[] itTypeEnums, String roomName, String[] line) {
+    private static void addInteractable(Map<String, Room> roomMap, MainType type, String roomName, String[] line) {
         String[] interactableList = line[1].split(",");
 
         for (String interactableSt: interactableList) {
 
             // Determine which factory to use
             InteractableFactory itFactory = null;
-            for (InteractableTypeEnum itTypeEnum: itTypeEnums) {
-                for (InteractableType itType: itTypeEnum.getItTypeArray()) {
-                    if (itType.match(interactableSt)) {
-                        itFactory = InteractableFactoryProducer.getFactory(itType.getType());
-                        break;
-                    }
+            for (InteractableType itType: type.getItTypeArray()) {
+                if (itType.match(interactableSt)) {
+                    itFactory = InteractableFactoryProducer.getFactory(type.getType());
+                    break;
                 }
-                if (itFactory != null) break;
             }
+
 
             // Add interactable to a room
             Interactable interact = itFactory.get(interactableSt);

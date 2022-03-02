@@ -2,6 +2,7 @@ name:myRoom
 description:I'm in my room.
 monster:lizard man
 weapon:spoon
+item:potion
 north:outside
 name:outside
 description:I'm outside.
