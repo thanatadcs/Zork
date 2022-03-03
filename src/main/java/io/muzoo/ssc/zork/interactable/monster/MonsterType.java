@@ -9,7 +9,7 @@ public enum MonsterType implements InteractableTypeInterface {
 
     private String description;
 
-    private String attack;
+    private String attackDescription;
 
     private int maxHp;
 
@@ -17,7 +17,8 @@ public enum MonsterType implements InteractableTypeInterface {
 
     MonsterType(String name, String description, String weapon, int maxHP, int attackPower) {
         this.name = name;
-        this.attack = weapon;
+        this.description = description;
+        this.attackDescription = weapon;
         this.maxHp = maxHP;
         this.atk = attackPower;
     }
@@ -30,8 +31,8 @@ public enum MonsterType implements InteractableTypeInterface {
         return description;
     }
 
-    public String getAttack() {
-        return attack;
+    public String getAttackDescription() {
+        return attackDescription;
     }
 
     public int getMaxHP() {

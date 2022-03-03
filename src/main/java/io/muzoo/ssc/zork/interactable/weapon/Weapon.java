@@ -4,10 +4,14 @@ import io.muzoo.ssc.zork.interactable.Interactable;
 
 public class Weapon extends Interactable {
 
-    private int damage;
+    private int atk;
 
-    public Weapon(String name, String description, int damage) {
+    public Weapon(String name, String description, int atk) {
         super(name, description, "weapon",true);
-        this.damage = damage;
+        this.atk = atk;
+    }
+
+    public int getAtk() {
+        return atk;
     }
 }

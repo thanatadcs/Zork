@@ -12,15 +12,22 @@ import java.util.*;
 
 public class LoadRoom {
 
-    public static Room load(String filepath) {
-        Map<String, Room> roomMap = new HashMap<>();
+    private Map<String, Room> roomMap;
+    private String startRoom; // Starting room is the first room
+
+    public LoadRoom(String filepath) {
+        roomMap = new HashMap<>();
+        startRoom = null;
+        load(filepath);
+    }
+
+    public void load(String filepath) {
         List<String> dirs = List.of("north", "south", "east", "west");
         InteractableTypeEnum[] allType = InteractableTypeEnum.values();
         // Generate rough map (String map)
         try {
             Scanner scanner = new Scanner(new File(filepath));
             String roomName = null;
-            String startRoom = null; // Starting room is the first room
             while (scanner.hasNextLine()) {
                 String[] line = scanner.nextLine().split(":");
 
@@ -54,15 +61,13 @@ public class LoadRoom {
                 }
             }
 
-            return roomMap.get(startRoom);
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
 
-        return null;
     }
 
-    private static void addInteractable(Map<String, Room> roomMap, InteractableTypeEnum type, String roomName, String[] line) {
+    private void addInteractable(Map<String, Room> roomMap, InteractableTypeEnum type, String roomName, String[] line) {
         String[] interactableList = line[1].split(",");
 
         for (String interactableSt: interactableList) {
@@ -76,7 +81,6 @@ public class LoadRoom {
                 }
             }
 
-
             // Add interactable to a room
             Interactable interact = itFactory.get(interactableSt);
             if (interact != null)
@@ -86,4 +90,11 @@ public class LoadRoom {
         }
     }
 
+    public Room getStartRoom() {
+        return this.roomMap.get(startRoom);
+    }
+
+    public Collection<Room> getAllRooms() {
+        return roomMap.values();
+    }
 }

@@ -17,6 +17,18 @@ public abstract class Interactable {
         this.type = type;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public boolean match(String name) {
         return this.name.equals(name);
     }

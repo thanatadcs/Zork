@@ -4,6 +4,8 @@ import io.muzoo.ssc.zork.command.*;
 import io.muzoo.ssc.zork.room.LoadRoom;
 import io.muzoo.ssc.zork.room.Room;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -12,16 +14,24 @@ public class Game {
 
     private boolean exit = false;
 
-    private Room currentRoom = LoadRoom.load("map.txt");
+    private Player player = new Player(5, 1);
 
-    private Player player = new Player(5, 2, null);
+    private Room currentRoom;
+
+    private Collection<Room> allRooms;
 
     // Call this to start gameg
     public void start() {
+        // Load map
+        LoadRoom loadRoom = new LoadRoom("map.txt");
+        currentRoom = loadRoom.getStartRoom();
+        allRooms = loadRoom.getAllRooms();
+
         // Safety check
-        if (currentRoom == null)
+        if (currentRoom == null) {
+            System.out.println("Failed to load map");
             exit();
-        else
+        } else
             System.out.println("Game started");
 
         // Main game loop
@@ -62,5 +72,10 @@ public class Game {
     // Info command
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    // Save command
+    public Collection<Room> getAllRooms() {
+        return allRooms;
     }
 }
