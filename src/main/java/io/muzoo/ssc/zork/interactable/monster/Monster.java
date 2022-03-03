@@ -30,7 +30,7 @@ public class Monster extends Interactable {
     public void attack(Player player) {
         int damage = random.nextInt(this.atk + 1);
         if (damage <= 0)
-            System.out.println(this.getName() + "attacked, but missed!");
+            System.out.println(this.getName() + " attacked, but missed!");
         else {
             System.out.println(this.attackDescription);
             player.takeDamage(damage);

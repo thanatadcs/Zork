@@ -17,31 +17,26 @@ public class InfoCommand implements Command {
             return ;
         }
 
-        if (game.isGameStart()) {
-            Room room = game.getCurrentRoom();
-            Player player = game.getPlayer();
-            System.out.printf("Player: HP=%d/%d ATK=%d\n", player.getHp(), player.getMaxHp(), player.getAtk());
-            System.out.println("Inventory: " + player.getInventory());
-            System.out.println("Location: " + room.getDescription());
 
-            // Print thing in the room
-            System.out.println("Environment:");
-            for (Interactable it: room.getInteractableList()) {
-                if (it.getType().equals("monster")) {
-                    // If monster is dead, show dead in front.
-                    Monster monster = (Monster) it;
-                    if (monster.isAlive())
-                        System.out.printf((monster + ", hp: " + monster.getHp() + ", engage: " + monster.isEngage()));
-                    else
-                        System.out.printf(monster.toString());
-                    System.out.println();
-                } else {
-                    System.out.println(it + " (" +it.getType() + ")");
-                }
+        Room room = game.getCurrentRoom();
+        Player player = game.getPlayer();
+        System.out.printf("Player: HP=%d/%d ATK=%d\n", player.getHp(), player.getMaxHp(), player.getAtk());
+        System.out.println("Inventory: " + player.getInventory());
+        System.out.println("Location: " + room.getDescription());
+
+        // Print thing in the room
+        System.out.println("Environment:");
+        for (Interactable it: room.getInteractableList()) {
+            if (it.getType().equals("monster")) {
+                // If monster is dead, show dead in front.
+                Monster monster = (Monster) it;
+                if (monster.isAlive())
+                    System.out.printf((monster + ", hp: " + monster.getHp() + "\n"));
+                else
+                    System.out.printf(monster.toString() + "\n");
+            } else {
+                System.out.println(it + " (" +it.getType() + ")");
             }
-        } else {
-            System.out.println("play [map file]");
-            System.out.println("load [save file]");
         }
     }
 }

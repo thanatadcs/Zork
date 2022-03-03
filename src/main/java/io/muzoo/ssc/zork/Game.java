@@ -42,7 +42,7 @@ public class Game {
             } else if (
                     commandLine.getCommandType().match("play") ||
                     commandLine.getCommandType().match("load") ||
-                    commandLine.getCommandType().match("info")
+                    commandLine.getCommandType().match("help")
             ) {
                 // Before starting the game
                 // Only play and load command is available
@@ -57,7 +57,6 @@ public class Game {
 
     // Monster support
     public void hitPlayer() {
-        Random random = new Random();
         // Check for monster
         Room room = getCurrentRoom();
         Monster monster = null;

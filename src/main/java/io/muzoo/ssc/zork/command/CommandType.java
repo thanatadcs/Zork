@@ -4,6 +4,7 @@ import io.muzoo.ssc.zork.command.impl.*;
 
 public enum CommandType {
 
+    HELP(HelpCommand.class, "help"),
     SAVE(SaveCommand.class, "save"),
     LOAD(LoadCommand.class, "load"),
     QUIT(QuitCommand.class, "quit"),
