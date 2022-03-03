@@ -4,6 +4,7 @@ import io.muzoo.ssc.zork.command.impl.*;
 
 public enum CommandType {
 
+    PLAY(PlayCommand.class, "play"),
     ATTACK_WITH(AttackWithCommand.class, "attack with"),
     DROP(DropCommand.class, "drop"),
     USE(UseCommand.class, "use"),

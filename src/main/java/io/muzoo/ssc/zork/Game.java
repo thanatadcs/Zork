@@ -16,23 +16,25 @@ public class Game {
 
     private Player player = new Player(5, 1);
 
-    private Room currentRoom;
+    private Room currentRoom = null;
 
-    private Collection<Room> allRooms;
+    private Collection<Room> allRooms = null;
+
+    private boolean gameStart = false;
 
     // Call this to start gameg
     public void start() {
-        // Load map
-        LoadRoom loadRoom = new LoadRoom("map.txt");
-        currentRoom = loadRoom.getStartRoom();
-        allRooms = loadRoom.getAllRooms();
-
-        // Safety check
-        if (currentRoom == null) {
-            System.out.println("Failed to load map");
-            exit();
-        } else
-            System.out.println("Game started");
+//        // Load map
+//        LoadRoom loadRoom = new LoadRoom("map.txt");
+//        currentRoom = loadRoom.getStartRoom();
+//        allRooms = loadRoom.getAllRooms();
+//
+//        // Safety check
+//        if (currentRoom == null) {
+//            System.out.println("Failed to load map");
+//            exit();
+//        } else
+//            System.out.println("Game started");
 
         // Main game loop
         // Parse and execute command
@@ -42,7 +44,12 @@ public class Game {
             Command command = CommandFactory.get(commandLine.getCommandType());
             if (command == null) {
                 System.out.println("Command not found");
-            } else {
+            } else if (isGameStart()) {
+                command.execute(this, commandLine.getArgument());
+            } else if (commandLine.getCommandType().match("play") || commandLine.getCommandType().match("load")){
+                // Before starting the game
+                // Only play and load command is available
+                // This is to choose map or safe point
                 command.execute(this, commandLine.getArgument());
             }
         }
@@ -77,5 +84,18 @@ public class Game {
     // Save command
     public Collection<Room> getAllRooms() {
         return allRooms;
+    }
+
+    // Play command and Load command
+    public void setAllRooms(Collection<Room> allRooms) {
+        this.allRooms = allRooms;
+    }
+
+    public boolean isGameStart() {
+        return gameStart;
+    }
+
+    public void setGameStart(boolean gameStart) {
+        this.gameStart = gameStart;
     }
 }
