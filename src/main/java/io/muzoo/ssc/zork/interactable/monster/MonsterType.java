@@ -3,7 +3,7 @@ package io.muzoo.ssc.zork.interactable.monster;
 import io.muzoo.ssc.zork.interactable.InteractableTypeInterface;
 
 public enum MonsterType implements InteractableTypeInterface {
-    LIZARDMAN("lizard man", "Normal lizard male", "attacked with a spear!", 2, 1);
+    LIZARDMAN("lizard man", "Normal lizard male", "lizard man attacked with a spear!", 2, 1);
 
     private String name;
 

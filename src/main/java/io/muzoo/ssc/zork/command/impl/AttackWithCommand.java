@@ -35,11 +35,20 @@ public class AttackWithCommand implements Command {
         for (Interactable it: room.getInteractableList()) {
             if (it.getType().equals("monster")) {
                 monster = (Monster) it;
-                player.attack(monster, weapon);
 
+                // Monster already dead
                 if (!monster.isAlive()) {
-                    System.out.println(monster.getName() + " is dead.");
-                    monster.setName("dead " + monster.getName());
+                    monster = null;
+                    continue;
+                }
+
+                if (monster.isAlive()) {
+                    player.attack(monster, weapon);
+                    monster.setEngage(true);
+
+                    if (!monster.isAlive()) {
+                        System.out.println(monster.getName().substring(5) + " is dead.");
+                    }
                 }
             }
         }

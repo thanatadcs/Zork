@@ -13,6 +13,8 @@ public class Monster extends Interactable {
 
     private int atk;
 
+    private boolean engage = false;
+
     public Monster(String name, String description, String attackDescription, int maxHP, int atk) {
         super(name, description, "monster",false);
         this.attackDescription = attackDescription;
@@ -32,5 +34,21 @@ public class Monster extends Interactable {
 
     public boolean isAlive() {
         return this.hp >= 0;
+    }
+
+    public boolean isEngage() {
+        return engage;
+    }
+
+    public void setEngage(boolean engage) {
+        this.engage = engage;
+    }
+
+    @Override
+    public String getName() {
+        if (isAlive())
+            return super.getName();
+        else
+            return "dead " + super.getName();
     }
 }

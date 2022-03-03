@@ -1,6 +1,8 @@
 package io.muzoo.ssc.zork;
 
 import io.muzoo.ssc.zork.command.*;
+import io.muzoo.ssc.zork.interactable.Interactable;
+import io.muzoo.ssc.zork.interactable.monster.Monster;
 import io.muzoo.ssc.zork.room.LoadRoom;
 import io.muzoo.ssc.zork.room.Room;
 
@@ -14,7 +16,7 @@ public class Game {
 
     private boolean exit = false;
 
-    private Player player = new Player(5, 1);
+    private Player player = new Player(5, 1); // Default player stat
 
     private Room currentRoom = null;
 
@@ -48,6 +50,7 @@ public class Game {
             } else if (isGameStart()) {
                 // Command while playing the game
                 command.execute(this, commandLine.getArgument());
+                hitPlayer();
             } else if (
                     commandLine.getCommandType().match("play") ||
                     commandLine.getCommandType().match("load") ||
@@ -60,6 +63,27 @@ public class Game {
             } else {
                 // Show info if no valid command being enter
                 CommandFactory.get(CommandType.INFO).execute(this, null);
+            }
+        }
+    }
+
+    // Monster support
+    public void hitPlayer() {
+        // Check for monster
+        Room room = getCurrentRoom();
+        Monster monster = null;
+        for (Interactable it: room.getInteractableList()) {
+            if (it.getType().equals("monster")) {
+                monster = (Monster) it;
+
+                if (monster.isAlive() && monster.isEngage()){
+                    monster.attack(getPlayer());
+                }
+
+                if (!getPlayer().isAlive()) {
+                    System.out.println("You are dead!");
+                    exit();
+                }
             }
         }
     }
@@ -106,5 +130,9 @@ public class Game {
 
     public void setGameStart(boolean gameStart) {
         this.gameStart = gameStart;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
