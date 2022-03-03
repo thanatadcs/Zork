@@ -3,6 +3,8 @@ package io.muzoo.ssc.zork.interactable.monster;
 import io.muzoo.ssc.zork.Player;
 import io.muzoo.ssc.zork.interactable.Interactable;
 
+import java.util.Random;
+
 public class Monster extends Interactable {
 
     private String attackDescription;
@@ -15,6 +17,8 @@ public class Monster extends Interactable {
 
     private boolean engage = false;
 
+    private Random random = new Random();
+
     public Monster(String name, String description, String attackDescription, int maxHP, int atk) {
         super(name, description, "monster",false);
         this.attackDescription = attackDescription;
@@ -24,8 +28,13 @@ public class Monster extends Interactable {
     }
 
     public void attack(Player player) {
-        System.out.println(this.attackDescription);
-        player.takeDamage(this.atk);
+        int damage = random.nextInt(this.atk + 1);
+        if (damage <= 0)
+            System.out.println(this.getName() + "attacked, but missed!");
+        else {
+            System.out.println(this.attackDescription);
+            player.takeDamage(damage);
+        }
     }
 
     public void takeDamage(int damage) {

@@ -7,6 +7,7 @@ import io.muzoo.ssc.zork.room.Room;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -56,6 +57,7 @@ public class Game {
 
     // Monster support
     public void hitPlayer() {
+        Random random = new Random();
         // Check for monster
         Room room = getCurrentRoom();
         Monster monster = null;

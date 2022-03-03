@@ -6,6 +6,7 @@ import io.muzoo.ssc.zork.interactable.weapon.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Player {
 
@@ -16,6 +17,8 @@ public class Player {
     private int atk;
 
     private List<Interactable> inventory;
+
+    private Random random = new Random();
 
     public Player(int maxHp, int atk) {
         this.maxHp = maxHp;
@@ -29,8 +32,13 @@ public class Player {
     }
 
     public void attack(Monster monster, Weapon weapon) {
-        System.out.println("You attacked " + monster.getName() + " with " + weapon.getName());
-        monster.takeDamage(this.atk + weapon.getAtk());
+        int damage = random.nextInt(this.atk + weapon.getAtk() + 1);
+        if (damage <= 0)
+            System.out.println("Your attack missed!");
+        else {
+            System.out.println("You attacked " + monster.getName() + " with " + weapon.getName());
+            monster.takeDamage(damage);
+        }
     }
 
 
