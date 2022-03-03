@@ -3,11 +3,9 @@ package io.muzoo.ssc.zork;
 import io.muzoo.ssc.zork.command.*;
 import io.muzoo.ssc.zork.interactable.Interactable;
 import io.muzoo.ssc.zork.interactable.monster.Monster;
-import io.muzoo.ssc.zork.room.LoadRoom;
 import io.muzoo.ssc.zork.room.Room;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -26,18 +24,6 @@ public class Game {
 
     // Call this to start gameg
     public void start() {
-//        // Load map
-//        LoadRoom loadRoom = new LoadRoom("map.txt");
-//        currentRoom = loadRoom.getStartRoom();
-//        allRooms = loadRoom.getAllRooms();
-//
-//        // Safety check
-//        if (currentRoom == null) {
-//            System.out.println("Failed to load map");
-//            exit();
-//        } else
-//            System.out.println("Game started");
-
         // Main game loop
         // Parse and execute command
         while (!isExit() && scanner.hasNextLine()) {

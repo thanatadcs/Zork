@@ -2,7 +2,7 @@ package io.muzoo.ssc.zork.command.impl;
 
 import io.muzoo.ssc.zork.Game;
 import io.muzoo.ssc.zork.command.Command;
-import io.muzoo.ssc.zork.room.LoadRoom;
+import io.muzoo.ssc.zork.room.LoadFile;
 import io.muzoo.ssc.zork.room.Room;
 
 import java.util.Collection;
@@ -20,7 +20,7 @@ public class PlayCommand implements Command {
             return ;
         }
 
-        LoadRoom loadRoom = new LoadRoom(argument);
+        LoadFile loadRoom = new LoadFile(game, argument);
         Room currentRoom = loadRoom.getStartRoom();
         Collection<Room> allRooms = loadRoom.getAllRooms();
 

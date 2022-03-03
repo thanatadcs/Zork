@@ -21,7 +21,9 @@ public class InfoCommand implements Command {
             for (Interactable it: room.getInteractableList()) {
                 if (it.getType().equals("monster")) {
                     // If monster is dead, show dead in front.
-                    System.out.println(((Monster) it).getName());
+                    Monster monster = (Monster) it;
+                    System.out.printf((monster.getName() + ", hp: " + monster.getHp() + ", engage: " + monster.isEngage()));
+                    System.out.println();
                 } else {
                     System.out.println(it);
                 }

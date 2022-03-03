@@ -44,6 +44,14 @@ public class Monster extends Interactable {
         this.engage = engage;
     }
 
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
     @Override
     public String getName() {
         if (isAlive())

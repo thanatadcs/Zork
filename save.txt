@@ -1,11 +1,17 @@
+player
+hp:2
+weapon:spoon
+item:mug
+end
 map
 name:myRoom
 description:I'm in my room.
-monster:lizard man
+monster:lizard man/hp=-1/engage=true,lizard man/hp=2/engage=true
 weapon:spoon
-item:potion,mug
+item:mug
 north:outside
 name:outside
 description:I'm outside.
+item:potion
 south:myRoom
 end
