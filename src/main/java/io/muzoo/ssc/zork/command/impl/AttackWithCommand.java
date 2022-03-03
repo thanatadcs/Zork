@@ -47,7 +47,7 @@ public class AttackWithCommand implements Command {
                     monster.setEngage(true);
 
                     if (!monster.isAlive()) {
-                        System.out.println(monster.getName().substring(5) + " is dead.");
+                        System.out.println(monster.getName() + " is dead.");
                     }
                 }
             }

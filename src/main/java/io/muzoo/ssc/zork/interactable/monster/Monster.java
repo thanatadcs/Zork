@@ -53,7 +53,7 @@ public class Monster extends Interactable {
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         if (isAlive())
             return super.getName();
         else

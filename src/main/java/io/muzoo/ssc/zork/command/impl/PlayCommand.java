@@ -6,6 +6,7 @@ import io.muzoo.ssc.zork.room.LoadFile;
 import io.muzoo.ssc.zork.room.Room;
 
 import java.util.Collection;
+import java.util.Map;
 
 public class PlayCommand implements Command {
     @Override
@@ -22,14 +23,14 @@ public class PlayCommand implements Command {
 
         LoadFile loadRoom = new LoadFile(game, argument);
         Room currentRoom = loadRoom.getStartRoom();
-        Collection<Room> allRooms = loadRoom.getAllRooms();
+        Map<String, Room> roomMap = loadRoom.getRoomMap();
 
-        if (currentRoom == null || allRooms == null) {
+        if (currentRoom == null || roomMap == null) {
             System.out.println("Failed to load map");
             return ;
         } else {
             game.setCurrentRoom(currentRoom);
-            game.setAllRooms(allRooms);
+            game.setRoomMap(roomMap);
             game.setGameStart(true);
             System.out.println("Game started");
         }

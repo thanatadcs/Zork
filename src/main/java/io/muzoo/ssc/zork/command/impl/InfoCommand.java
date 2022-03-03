@@ -22,7 +22,10 @@ public class InfoCommand implements Command {
                 if (it.getType().equals("monster")) {
                     // If monster is dead, show dead in front.
                     Monster monster = (Monster) it;
-                    System.out.printf((monster.getName() + ", hp: " + monster.getHp() + ", engage: " + monster.isEngage()));
+                    if (monster.isAlive())
+                        System.out.printf((monster + ", hp: " + monster.getHp() + ", engage: " + monster.isEngage()));
+                    else
+                        System.out.printf(monster);
                     System.out.println();
                 } else {
                     System.out.println(it);

@@ -46,6 +46,10 @@ public class Player {
         this.hp = hp;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
     public void setInventory(List<Interactable> inventory) {
         this.inventory = inventory;
     }

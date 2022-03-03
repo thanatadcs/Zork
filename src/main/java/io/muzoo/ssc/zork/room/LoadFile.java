@@ -7,6 +7,7 @@ import io.muzoo.ssc.zork.interactable.InteractableFactoryProducer;
 import io.muzoo.ssc.zork.interactable.InteractableTypeInterface;
 import io.muzoo.ssc.zork.interactable.InteractableTypeEnum;
 import io.muzoo.ssc.zork.interactable.monster.Monster;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,6 +47,8 @@ public class LoadFile {
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
+        } catch (NullPointerException e) {
+            System.out.println("Invalid monster, item, or weapon name");
         }
 
     }
@@ -85,7 +88,7 @@ public class LoadFile {
             if (line[0].equals("name")) {
                 roomName = line[1];
 
-                if (roomMap.get(roomName) == null) roomMap.put(roomName, new Room(roomName));
+                if (roomMap.get(roomName) == null) roomMap.put(roomName, new Room(roomName, roomName));
             }
 
             // Add description to existing room
@@ -104,7 +107,7 @@ public class LoadFile {
                 String dir = line[0];
                 String adjRoom = line[1];
 
-                if (roomMap.get(adjRoom) == null) roomMap.put(adjRoom, new Room(adjRoom));
+                if (roomMap.get(adjRoom) == null) roomMap.put(adjRoom, new Room(adjRoom, adjRoom));
 
                 roomMap.get(roomName).setExits(dir, roomMap.get(adjRoom));
             }
@@ -115,6 +118,7 @@ public class LoadFile {
         String[] interactableList = line[1].split(",");
 
         for (String interactableSt: interactableList) {
+            if (interactableSt.isEmpty()) continue;
 
             String[] intWithAttr = interactableSt.split("/");
 
@@ -156,7 +160,7 @@ public class LoadFile {
         return this.roomMap.get(startRoom);
     }
 
-    public Collection<Room> getAllRooms() {
-        return roomMap.values();
+    public Map<String, Room> getRoomMap() {
+        return roomMap;
     }
 }

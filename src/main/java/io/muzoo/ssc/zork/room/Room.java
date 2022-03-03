@@ -8,16 +8,24 @@ import java.util.List;
 import java.util.Map;
 
 public class Room {
+
+    private String name;
+
     private String description;
 
     private Map<String, Room> exits;
 
     private List<Interactable> interactableList;
 
-    public Room(String description) {
+    public Room(String name, String description) {
+        this.name = name;
         this.description = description;
         exits = new HashMap<>();
         interactableList = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<Interactable> getInteractableList() {
@@ -42,6 +50,10 @@ public class Room {
 
     public void setExits(String direction, Room room) {
         this.exits.put(direction, room);
+    }
+
+    public Map<String, Room> getExitsMap() {
+        return this.exits;
     }
 
 }

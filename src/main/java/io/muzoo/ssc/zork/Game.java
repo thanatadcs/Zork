@@ -6,6 +6,7 @@ import io.muzoo.ssc.zork.interactable.monster.Monster;
 import io.muzoo.ssc.zork.room.Room;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -18,7 +19,7 @@ public class Game {
 
     private Room currentRoom = null;
 
-    private Collection<Room> allRooms = null;
+    private Map<String, Room> roomMap = null;
 
     private boolean gameStart = false;
 
@@ -101,13 +102,13 @@ public class Game {
     }
 
     // Save command
-    public Collection<Room> getAllRooms() {
-        return allRooms;
+    public Map<String, Room> getRoomMap() {
+        return roomMap;
     }
 
     // Play command and Load command
-    public void setAllRooms(Collection<Room> allRooms) {
-        this.allRooms = allRooms;
+    public void setRoomMap(Map<String, Room> roomMap) {
+        this.roomMap = roomMap;
     }
 
     public boolean isGameStart() {
