@@ -3,6 +3,9 @@ package io.muzoo.ssc.zork.command.impl;
 import io.muzoo.ssc.zork.Game;
 import io.muzoo.ssc.zork.command.Command;
 import io.muzoo.ssc.zork.room.LoadFile;
+import io.muzoo.ssc.zork.room.Room;
+
+import java.util.Collection;
 
 public class LoadCommand implements Command {
     @Override
@@ -18,9 +21,17 @@ public class LoadCommand implements Command {
         }
 
         LoadFile loadFile = new LoadFile(game, argument);
-        game.setCurrentRoom(loadFile.getStartRoom());
-        game.setAllRooms(loadFile.getAllRooms());
-        game.setGameStart(true);
-        System.out.println("Game started");
+        Room currentRoom = loadFile.getStartRoom();
+        Collection<Room> allRooms = loadFile.getAllRooms();
+
+        if (currentRoom == null || allRooms == null) {
+            System.out.println("Can't load file");
+            return ;
+        } else {
+            game.setCurrentRoom(currentRoom);
+            game.setAllRooms(allRooms);
+            game.setGameStart(true);
+            System.out.println("Game started");
+        }
     }
 }

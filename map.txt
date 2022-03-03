@@ -1,4 +1,5 @@
 map
+start:myRoom
 name:myRoom
 description:I'm in my room.
 monster:lizard man

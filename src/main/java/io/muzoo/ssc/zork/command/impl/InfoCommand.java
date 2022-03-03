@@ -29,7 +29,7 @@ public class InfoCommand implements Command {
                 }
             }
         } else {
-            System.out.println("play [map]");
+            System.out.println("play [map file]");
             System.out.println("load [save file]");
         }
     }

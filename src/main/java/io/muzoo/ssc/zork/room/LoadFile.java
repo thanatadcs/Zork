@@ -77,10 +77,13 @@ public class LoadFile {
             if (line[0].equals("end")) break;
 
             // Generate map for the game
+            if (line[0].equals("start")) {
+                if (startRoom == null) startRoom = line[1];
+            }
+
             // Create new room if not exists
             if (line[0].equals("name")) {
                 roomName = line[1];
-                if (startRoom == null) startRoom = roomName;
 
                 if (roomMap.get(roomName) == null) roomMap.put(roomName, new Room(roomName));
             }

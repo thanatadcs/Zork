@@ -4,6 +4,7 @@ weapon:spoon
 item:mug
 end
 map
+start:outside
 name:myRoom
 description:I'm in my room.
 monster:lizard man/hp=-1/engage=true,lizard man/hp=2/engage=true
