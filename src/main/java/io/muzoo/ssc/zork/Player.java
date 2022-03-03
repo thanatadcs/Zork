@@ -50,6 +50,26 @@ public class Player {
         return hp;
     }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void increastAtk(int atk) {
+        this.atk += atk;
+    }
+
+    public void heal(int n) {
+        int newHp = this.hp + n;
+        if (newHp > maxHp)
+            this.hp = maxHp;
+        else
+            this.hp = newHp;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
     public void setInventory(List<Interactable> inventory) {
         this.inventory = inventory;
     }

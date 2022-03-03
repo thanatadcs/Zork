@@ -1,10 +1,13 @@
 package io.muzoo.ssc.zork.command.impl;
 
 import io.muzoo.ssc.zork.Game;
+import io.muzoo.ssc.zork.Player;
 import io.muzoo.ssc.zork.command.Command;
 import io.muzoo.ssc.zork.interactable.Interactable;
 import io.muzoo.ssc.zork.interactable.monster.Monster;
 import io.muzoo.ssc.zork.room.Room;
+
+import java.sql.SQLOutput;
 
 public class InfoCommand implements Command {
     @Override
@@ -14,10 +17,15 @@ public class InfoCommand implements Command {
             return ;
         }
 
-
         if (game.isGameStart()) {
             Room room = game.getCurrentRoom();
-            System.out.println(room.getDescription());
+            Player player = game.getPlayer();
+            System.out.printf("Player: HP=%d/%d ATK=%d\n", player.getHp(), player.getMaxHp(), player.getAtk());
+            System.out.println("Inventory: " + player.getInventory());
+            System.out.println("Location: " + room.getDescription());
+
+            // Print thing in the room
+            System.out.println("Environment:");
             for (Interactable it: room.getInteractableList()) {
                 if (it.getType().equals("monster")) {
                     // If monster is dead, show dead in front.
@@ -25,10 +33,10 @@ public class InfoCommand implements Command {
                     if (monster.isAlive())
                         System.out.printf((monster + ", hp: " + monster.getHp() + ", engage: " + monster.isEngage()));
                     else
-                        System.out.printf(monster);
+                        System.out.printf(monster.toString());
                     System.out.println();
                 } else {
-                    System.out.println(it);
+                    System.out.println(it + " (" +it.getType() + ")");
                 }
             }
         } else {

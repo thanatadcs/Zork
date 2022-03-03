@@ -33,7 +33,7 @@ public class Monster extends Interactable {
     }
 
     public boolean isAlive() {
-        return this.hp >= 0;
+        return this.hp > 0;
     }
 
     public boolean isEngage() {
