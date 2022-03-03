@@ -20,9 +20,9 @@ public class PlayCommand implements Command {
             return ;
         }
 
-        LoadFile loadRoom = new LoadFile(game, argument);
-        Room currentRoom = loadRoom.getStartRoom();
-        Map<String, Room> roomMap = loadRoom.getRoomMap();
+        LoadFile loadFile = new LoadFile(game, argument);
+        Room currentRoom = loadFile.getStartRoom();
+        Map<String, Room> roomMap = loadFile.getRoomMap();
 
         if (currentRoom == null || roomMap == null) {
             System.out.println("Failed to load map");
@@ -31,6 +31,7 @@ public class PlayCommand implements Command {
             game.setCurrentRoom(currentRoom);
             game.setRoomMap(roomMap);
             game.setGameStart(true);
+            game.setMonsterNum(loadFile.getMonsterNum());
             System.out.println("Game started");
         }
     }

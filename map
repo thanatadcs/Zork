@@ -1,12 +1,20 @@
 map
-start:myRoom
-name:myRoom
-description:I'm in my room.
-monster:lizard man
+start:living room
+name:living room
+description:I'm in living room.
 weapon:spoon
 item:potion,mug
-north:outside
-name:outside
-description:I'm outside.
-south:myRoom
+east:kitchen
+north:front of house
+name:kitchen
+description:I'm in the kitchen
+west:living room
+east:behind house
+name:behind house
+description:I'm in the back of the house
+monster:lizard man
+west:kitchen
+name:front of house
+description:I'm in the front of the house
+south:living room
 end

@@ -19,6 +19,7 @@ public class LoadFile {
     private String startRoom; // Starting room is the first room
     List<String> dirs = List.of("north", "south", "east", "west");
     InteractableTypeEnum[] allType = InteractableTypeEnum.values();
+    private int monsterNum = 0;
 
     public LoadFile(Game game, String filepath) {
         this.game = game;
@@ -138,9 +139,9 @@ public class LoadFile {
                     String attrName = attr[0];
                     String attrValue = attr[1];
                     if (attrName.equals("hp"))
-                        monster.setHp(Integer.parseInt(attr[1]));
+                        monster.setHp(Integer.parseInt(attrValue));
                     else if (attrName.equals("engage"))
-                        monster.setEngage(Boolean.parseBoolean(attr[1]));
+                        monster.setEngage(Boolean.parseBoolean(attrValue));
                 }
             }
 
@@ -148,8 +149,10 @@ public class LoadFile {
             if (interact != null)
                 if (addToPlayer)
                     game.getPlayer().getInventory().add(interact);
-                else
+                else {
+                    if (interact.getType().equals("monster")) this.monsterNum++;
                     roomMap.get(roomName).addInteractable(interact);
+                }
             else
                 System.out.println("Can't add " + interactableSt);
         }
@@ -161,5 +164,9 @@ public class LoadFile {
 
     public Map<String, Room> getRoomMap() {
         return roomMap;
+    }
+
+    public int getMonsterNum() {
+        return this.monsterNum;
     }
 }

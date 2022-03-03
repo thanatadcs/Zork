@@ -30,6 +30,7 @@ public class LoadCommand implements Command {
         } else {
             game.setCurrentRoom(currentRoom);
             game.setRoomMap(roomMap);
+            game.setMonsterNum(loadFile.getMonsterNum());
             game.setGameStart(true);
             System.out.println("Game started");
         }

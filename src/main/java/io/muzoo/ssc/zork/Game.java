@@ -22,6 +22,8 @@ public class Game {
 
     private boolean gameStart = false;
 
+    private int monsterNum = 0;
+
     // Call this to start gameg
     public void start() {
         // Main game loop
@@ -35,6 +37,11 @@ public class Game {
                 System.out.println("Command not found");
             } else if (isGameStart()) {
                 // Command while playing the game
+                if (win()) {
+                    System.out.println("Congratulation!");
+                    exit();
+                    continue;
+                }
                 command.execute(this, commandLine.getArgument());
                 hitPlayer();
             } else if (
@@ -120,5 +127,17 @@ public class Game {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public int getMonsterNum() {
+        return monsterNum;
+    }
+
+    public void setMonsterNum(int monsterNum) {
+        this.monsterNum = monsterNum;
+    }
+
+    public boolean win() {
+        return getMonsterNum() == 0;
     }
 }
