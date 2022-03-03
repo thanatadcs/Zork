@@ -5,7 +5,6 @@ import io.muzoo.ssc.zork.command.Command;
 import io.muzoo.ssc.zork.room.LoadFile;
 import io.muzoo.ssc.zork.room.Room;
 
-import java.util.Collection;
 import java.util.Map;
 
 public class LoadCommand implements Command {

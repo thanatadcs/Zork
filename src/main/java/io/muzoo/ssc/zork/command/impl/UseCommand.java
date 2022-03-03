@@ -5,7 +5,6 @@ import io.muzoo.ssc.zork.Player;
 import io.muzoo.ssc.zork.command.Command;
 import io.muzoo.ssc.zork.interactable.Interactable;
 import io.muzoo.ssc.zork.interactable.item.Item;
-import io.muzoo.ssc.zork.room.Room;
 
 import java.util.List;
 

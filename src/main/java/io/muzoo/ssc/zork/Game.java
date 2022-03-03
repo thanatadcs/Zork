@@ -5,9 +5,7 @@ import io.muzoo.ssc.zork.interactable.Interactable;
 import io.muzoo.ssc.zork.interactable.monster.Monster;
 import io.muzoo.ssc.zork.room.Room;
 
-import java.util.Collection;
 import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game {

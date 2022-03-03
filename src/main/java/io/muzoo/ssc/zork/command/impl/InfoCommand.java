@@ -7,8 +7,6 @@ import io.muzoo.ssc.zork.interactable.Interactable;
 import io.muzoo.ssc.zork.interactable.monster.Monster;
 import io.muzoo.ssc.zork.room.Room;
 
-import java.sql.SQLOutput;
-
 public class InfoCommand implements Command {
     @Override
     public void execute(Game game, String argument) {

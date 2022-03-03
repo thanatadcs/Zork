@@ -7,7 +7,6 @@ import io.muzoo.ssc.zork.interactable.InteractableFactoryProducer;
 import io.muzoo.ssc.zork.interactable.InteractableTypeInterface;
 import io.muzoo.ssc.zork.interactable.InteractableTypeEnum;
 import io.muzoo.ssc.zork.interactable.monster.Monster;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
