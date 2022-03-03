@@ -49,7 +49,8 @@ public class AttackWithCommand implements Command {
                     if (!monster.isAlive()) {
                         System.out.println(monster.getName() + " is dead.");
                         // Increase player atk
-
+                        player.increastAtk(1);
+                        game.setMonsterNum(game.getMonsterNum() - 1);
                     }
                 }
             }

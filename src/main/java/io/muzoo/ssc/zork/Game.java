@@ -35,15 +35,16 @@ public class Game {
             if (command == null) {
                 // Command not found
                 System.out.println("Command not found");
+                CommandFactory.get(CommandType.HELP).execute(this, null);
             } else if (isGameStart()) {
                 // Command while playing the game
+                command.execute(this, commandLine.getArgument());
+                hitPlayer();
                 if (win()) {
-                    System.out.println("Congratulation!");
+                    System.out.println("Congratulation! You won!");
                     exit();
                     continue;
                 }
-                command.execute(this, commandLine.getArgument());
-                hitPlayer();
             } else if (
                     commandLine.getCommandType().match("play") ||
                     commandLine.getCommandType().match("load") ||
@@ -54,8 +55,7 @@ public class Game {
                 // This is to choose map or safe point
                 command.execute(this, commandLine.getArgument());
             } else {
-                // Show info if no valid command being enter
-                CommandFactory.get(CommandType.INFO).execute(this, null);
+                CommandFactory.get(CommandType.HELP).execute(this, null);
             }
         }
     }
