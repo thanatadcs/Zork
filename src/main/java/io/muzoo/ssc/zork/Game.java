@@ -43,14 +43,23 @@ public class Game {
             CommandLine commandLine = CommandParser.parseCommand(rawInput);
             Command command = CommandFactory.get(commandLine.getCommandType());
             if (command == null) {
+                // Command not found
                 System.out.println("Command not found");
             } else if (isGameStart()) {
+                // Command while playing the game
                 command.execute(this, commandLine.getArgument());
-            } else if (commandLine.getCommandType().match("play") || commandLine.getCommandType().match("load")){
+            } else if (
+                    commandLine.getCommandType().match("play") ||
+                    commandLine.getCommandType().match("load") ||
+                    commandLine.getCommandType().match("info")
+            ) {
                 // Before starting the game
                 // Only play and load command is available
                 // This is to choose map or safe point
                 command.execute(this, commandLine.getArgument());
+            } else {
+                // Show info if no valid command being enter
+                CommandFactory.get(CommandType.INFO).execute(this, null);
             }
         }
     }

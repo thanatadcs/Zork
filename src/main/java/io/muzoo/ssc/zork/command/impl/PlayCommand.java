@@ -10,6 +10,11 @@ import java.util.Collection;
 public class PlayCommand implements Command {
     @Override
     public void execute(Game game, String argument) {
+        if (game.isGameStart()) {
+            System.out.println("Can't use while playing game");
+            return ;
+        }
+
         if (argument == null) {
             System.out.println("No map specify");
             return ;

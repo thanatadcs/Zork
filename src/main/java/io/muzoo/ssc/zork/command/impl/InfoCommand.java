@@ -10,12 +10,19 @@ public class InfoCommand implements Command {
     public void execute(Game game, String argument) {
         if (argument != null) {
             System.out.println("Info what?");
-        } else {
+            return ;
+        }
+
+
+        if (game.isGameStart()) {
             Room room = game.getCurrentRoom();
             System.out.println(room.getDescription());
             for (Interactable it: room.getInteractableList()) {
                 System.out.println(it);
             }
+        } else {
+            System.out.println("play [map]");
+            System.out.println("load [save file]");
         }
     }
 }
